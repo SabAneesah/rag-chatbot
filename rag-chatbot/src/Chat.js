@@ -33,7 +33,8 @@ const Chat = () => {
                 width: '80%',
                 height: '6%',
                 mt: 3,
-                borderRadius: 3
+                borderRadius: 3,
+                textTransform: 'none'
               }} 
             >
               + New Conversation
@@ -97,7 +98,7 @@ const Chat = () => {
             }}>
               Welcome to RagBot
             </Typography>
-            
+
             <Typography variant="h6" sx={{ 
               position: 'absolute', 
               bottom: '50%', 
