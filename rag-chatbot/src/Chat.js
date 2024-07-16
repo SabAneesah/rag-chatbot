@@ -6,6 +6,31 @@ import PlusIcon from './Assets/Images/plus_icon.png';
 const Chat = () => {
   const [input, setInput] = useState('');
 
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === 'application/pdf') {
+      console.log('Selected file:', file.name);
+      // Handle the selected file (e.g., upload to server, process locally, etc.)
+      // Example:
+      // const formData = new FormData();
+      // formData.append('file', file);
+      // fetch('/upload', {
+      //   method: 'POST',
+      //   body: formData,
+      // })
+      // .then(response => response.json())
+      // .then(data => console.log('Upload successful:', data))
+      // .catch(error => console.error('Error uploading file:', error));
+    } else {
+      alert('Please select a PDF file.');
+    }
+  };
+
+  const handlePlusButtonClick = () => {
+    const fileInput = document.getElementById('pdf-upload-input');
+    fileInput.click(); // Trigger the file input dialog
+  };
+
   const sendMessage = () => {
     // Handle sending the message
   };
@@ -31,7 +56,7 @@ const Chat = () => {
               sx={{ 
                 backgroundColor: '#67AFBA', 
                 width: '80%',
-                height: '6%',
+                height: 58,
                 mt: 3,
                 borderRadius: 3,
                 textTransform: 'none'
@@ -57,13 +82,13 @@ const Chat = () => {
             }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', width: '80%', justifyContent: 'space-between', marginTop: 'auto', marginBottom: 3 }}>
-              <IconButton>
+              <IconButton onClick={handlePlusButtonClick}>
                 <img src={PlusIcon} alt="add" 
-                style={{ width: 50, 
-                height: 50, 
-                backgroundColor: '#D9D9D9',
-                borderRadius: '50%',
-                marginRight: 40 }} />
+                  style={{ width: 50, 
+                           height: 50, 
+                           backgroundColor: '#D9D9D9',
+                           borderRadius: '50%',
+                           marginRight: 40 }} />
               </IconButton>
               <TextField
                 value={input}
@@ -73,13 +98,13 @@ const Chat = () => {
                 placeholder="Send a message!"
                 InputProps={{
                   style: { 
-                    backgroundColor: '#67AFBA', 
+                    backgroundColor: '#5B9EA8', 
                     borderRadius: 25, 
                     paddingLeft: 10,
                     color: 'white'  // Set background color here
                   },
                   endAdornment: (
-                    <IconButton onClick={sendMessage} style={{ backgroundColor: '#67AFBA', borderRadius: '50%' }}>
+                    <IconButton onClick={sendMessage} style={{ backgroundColor: '#5B9EA8', borderRadius: '50%' }}>
                       <img src={SendIcon} alt="send" style={{ width: 35, height: 35 }} />
                     </IconButton>
                   ),
@@ -91,12 +116,12 @@ const Chat = () => {
               position: 'absolute', 
               bottom: '60%', 
               transform: 'translateY(50%)', 
-              backgroundImage: 'linear-gradient(to right, #FC5C7D, #6A82FB)', 
+              backgroundImage: 'linear-gradient(to left, #FC5C7D, #6A82FB)', 
               WebkitBackgroundClip: 'text', 
               color: 'transparent',
               fontWeight: 'bold' 
             }}>
-              Welcome to RagBot
+              Welcome to RAG-Bot
             </Typography>
 
             <Typography variant="h6" sx={{ 
@@ -112,6 +137,13 @@ const Chat = () => {
           </Paper>
         </Grid>
       </Grid>
+      <input 
+        type="file" 
+        id="pdf-upload-input" 
+        accept="application/pdf" 
+        onChange={handleFileSelect} 
+        style={{ display: 'none' }} 
+      />
     </Box>
   );
 }
