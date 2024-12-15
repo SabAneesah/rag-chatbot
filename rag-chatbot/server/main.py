@@ -9,6 +9,12 @@ import nltk
 # Download punkt tokenizer if not already installed
 # nltk.download('punkt')
 
+os.environ["TRANSFORMERS_CACHE"] = "D:/huggingface_cache"  # Change to a directory with enough space
+# Set the path to the model and tokenizer
+model_path = "D:/huggingface_cache/gpt2-large"
+tokenizer_path = "D:/huggingface_cache/gpt2-large"
+
+
 def extract_text_from_pdf(pdf_path):
     """Extracts text from a PDF file."""
     reader = PdfReader(pdf_path)
@@ -35,8 +41,8 @@ def chunk_text(text, chunk_size=500, overlap=50):
 def load_gpt2_model():
     """Load Hugging Face GPT-2 model and tokenizer."""
     print("Loading GPT-2 model...")
-    model = GPT2LMHeadModel.from_pretrained("gpt2")
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+    model = GPT2LMHeadModel.from_pretrained(model_path)
+    tokenizer = GPT2Tokenizer.from_pretrained(tokenizer_path)
     return model, tokenizer
 
 def generate_gpt2_response(query, model, tokenizer):
