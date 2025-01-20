@@ -9,7 +9,7 @@ import nltk
 # Download punkt tokenizer if not already installed
 # nltk.download('punkt')
 
-os.environ["TRANSFORMERS_CACHE"] = "D:/huggingface_cache"  # Change to a directory with enough space
+os.environ["TRANSFORMERS_CACHE"] = "D:/huggingface_cache"  
 # Set the path to the model and tokenizer
 model_path = "D:/huggingface_cache/gpt2-large"
 tokenizer_path = "D:/huggingface_cache/gpt2-large"
